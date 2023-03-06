@@ -8,4 +8,12 @@ public class Ticket
   public string Assigned { get; set; }
   public List<string> Watching { get; set; }
 
+ public Ticket()
+  {
+    Watching = new List<string>();
+  }
+  public string Display()
+    {
+      return $"Id: {TicketID}\nSummary: {Summary}\nStatus: {Status}\nPriority: {Priority}\nSubmitter: {Submitter}\nAssigned: {Assigned}\nWatching: {string.Join(", ", Watching)}\n";
+    }
 }
