@@ -1,5 +1,13 @@
-﻿string file = "Tickets.csv";
-StreamWriter sw = new StreamWriter(file, append: true);
-sw.WriteLine("TicketID, Summary, Status, Priority, Submitter, Assigned, Watching");
-sw.WriteLine("1,This is a bug ticket,Open,High,Drew Kjell,Jane Doe,Drew Kjell|John Smith|Bill Jones");
-sw.Close();
+﻿using NLog;
+
+// See https://aka.ms/new-console-template for more information
+string path = Directory.GetCurrentDirectory() + "\\nlog.config";
+
+// create instance of Logger
+var logger = LogManager.LoadConfiguration(path).GetCurrentClassLogger();
+string ticketFilePath = Directory.GetCurrentDirectory() + "\\Tickets.csv";
+
+logger.Info("Program started");
+
+TicketFile ticketFile = new TicketFile(ticketFilePath);
+
