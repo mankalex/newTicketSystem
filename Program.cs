@@ -17,6 +17,7 @@ do
   // display choices to user
   Console.WriteLine("1) Add Ticket");
   Console.WriteLine("2) Display All Tickets");
+  Console.WriteLine("3) Find Ticket");
   Console.WriteLine("Enter to quit");
   // input selection
   choice = Console.ReadLine();
@@ -72,7 +73,60 @@ do
     {
       Console.WriteLine(m.Display());
     }
+  } else if (choice == "3")
+  {
+    // asks user for input
+    Console.WriteLine("1) Status");
+    Console.WriteLine("2) Priority");
+    Console.WriteLine("3) Submitter");
+    string tInput = Console.ReadLine();
+
+    if(tInput == "1")
+    {
+      //asks user for input
+      Console.WriteLine("Enter status");
+      var i1 = Console.ReadLine();
+      // LINQ - Where filter operator & Select projection operator & Contains quantifier operator
+      var status = ticketFile.Tickets.Where(m => m.Status.Contains(i1)).Select(m => m.Status);
+      // LINQ - Count aggregation method
+      Console.WriteLine($"There are {status.Count()} tickets with \"{i1}\" in the status:");
+      foreach(string t in status)
+      {
+          Console.WriteLine($"  {status}");
+      }
+
+    }
+    if(tInput == "2")
+    {
+      //asks user for input
+      Console.WriteLine("Enter priority");
+      var i2 = Console.ReadLine();
+      // LINQ - Where filter operator & Select projection operator & Contains quantifier operator
+      var priority = ticketFile.Tickets.Where(m => m.Priority.Contains(i2)).Select(m => m.Priority);
+      // LINQ - Count aggregation method
+      Console.WriteLine($"There are {priority.Count()} tickets with \"{i2}\" in the priority:");
+      foreach(string t in priority)
+      {
+          Console.WriteLine($"  {priority}");
+      }
+
+    }
+    if(tInput == "3")
+    {
+      //asks user for input
+      Console.WriteLine("Enter submitter");
+      var i3 = Console.ReadLine();
+      // LINQ - Where filter operator & Select projection operator & Contains quantifier operator
+      var subm = ticketFile.Tickets.Where(m => m.Submitter.Contains(i3)).Select(m => m.Submitter);
+      // LINQ - Count aggregation method
+      Console.WriteLine($"There are {subm.Count()} tickets with \"{i3}\" in the submitter:");
+      foreach(string t in subm)
+      {
+          Console.WriteLine($"  {subm}");
+      }
+
+    }
   }
-} while (choice == "1" || choice == "2");
+} while (choice == "1" || choice == "2" || choice == "3");
 
 logger.Info("Program ended");
